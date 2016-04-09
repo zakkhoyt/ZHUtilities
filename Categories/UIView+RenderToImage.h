@@ -10,4 +10,5 @@
 
 @interface UIView (RenderToImage)
 -(UIImage*)imageRepresentation;
+-(UIImage*)imageRepresentationNoScale;
 @end

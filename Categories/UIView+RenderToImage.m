@@ -9,12 +9,18 @@
 #import "UIView+RenderToImage.h"
 
 @implementation UIView (RenderToImage)
--(UIImage*)imageRepresentation{
+- (UIImage *)imageRepresentation {
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return img;
 }
-
+- (UIImage *)imageRepresentationNoScale {
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 1.0);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
 @end

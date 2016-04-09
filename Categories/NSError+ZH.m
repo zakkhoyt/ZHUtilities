@@ -9,35 +9,25 @@
 #import "NSError+ZH.h"
 
 @implementation NSError (ZH)
-+(NSError*)error{
++ (NSError *)error {
     return [NSError errorWithCode:NSErrorCodeGeneral];
 }
-+(NSError*)errorWithCode:(NSErrorCode)code{
++ (NSError *)errorWithCode:(NSErrorCode)code {
     return [NSError errorWithCode:code userInfo:nil];
 }
-+(NSError*)errorWithCode:(NSErrorCode)code userInfo:(NSDictionary*)userInfo{
++ (NSError *)errorWithCode:(NSErrorCode)code userInfo:(NSDictionary *)userInfo {
     return [NSError errorWithDomain:NSErrorZHDomain code:code userInfo:userInfo];
 }
-+(NSError*)errorWithCode:(NSErrorCode)code localizedFailureReason:(NSString*)localizedFailureReason{
-    return [NSError errorWithCode:code userInfo:@{NSLocalizedDescriptionKey: localizedFailureReason}];
++ (NSError *)errorWithCode:(NSErrorCode)code localizedFailureReason:(NSString *)localizedFailureReason {
+    return [NSError errorWithCode:code userInfo:@{NSLocalizedDescriptionKey : localizedFailureReason}];
 }
 
-+(NSString*)stringFromCode:(NSErrorCode)code{
-    switch (code){
++ (NSString *)stringFromCode:(NSErrorCode)code {
+    switch (code) {
         case NSErrorCodeGeneral:
             return @"General error";
-        case NSErrorCodeUserCancelled:
-            return @"User cancelled";
-        case NSErrorCodeInvalidSelection:
-            return @"Invalid selection";
-        case NSErrorCodeStackShareFailed:
-            return @"Share failed";
-        case NSErrorCodeNotImplemented:
-            return @"Funcionality not implemented (TODO)";
-            default:
+        default:
             return @"Unknown";
-            
-
     }
 }
 @end
