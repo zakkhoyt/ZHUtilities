@@ -56,7 +56,7 @@
 }
 
 - (void)presentAlertDialogWithTitle:(NSString *)title errorAsMessage:(NSError *)error {
-    [self presentAlertDialogWithTitle:nil message:error.userInfo.allValues.description];
+    [self presentAlertDialogWithTitle:title message:error.userInfo.allValues.description];
 }
 
 @end
