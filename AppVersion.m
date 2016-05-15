@@ -12,10 +12,13 @@
 
 + (NSString *)appTitle {
     NSString *appName = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
+    return appName;
+}
+
++ (NSString *)bundleIdentifier {
     NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
     return bundleID;
 }
-
 + (NSString *)versionString {
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *appVersion = [bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];

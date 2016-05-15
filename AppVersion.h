@@ -10,6 +10,7 @@
 
 @interface AppVersion : NSObject
 + (NSString *)appTitle;
++ (NSString *)bundleIdentifier;
 + (NSString *)versionString;
 + (NSString *)buildAndVersionString;
 + (NSString *)executableString;
