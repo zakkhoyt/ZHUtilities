@@ -46,17 +46,34 @@
 }
 
 - (void)presentAlertDialogWithMessage:(NSString *)message {
-    [self presentAlertDialogWithTitle:nil message:message];
+    [self presentAlertDialogWithTitle:nil message:message completionBlock:nil];
 }
 
-- (void)presentAlertDialogWithTitle:(NSString *)title message:(NSString *)message {
-    UIAlertController *ac = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    [ac addAction:[UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:NULL]];
-    [self presentViewController:ac animated:YES completion:NULL];
+- (void)presentAlertDialogWithMessage:(NSString *)message completionBlock:(UIViewControllerAlertButtonBlock)completionBlock {
+    [self presentAlertDialogWithTitle:nil message:message completionBlock:completionBlock];
 }
 
 - (void)presentAlertDialogWithTitle:(NSString *)title errorAsMessage:(NSError *)error {
-    [self presentAlertDialogWithTitle:title message:error.userInfo.allValues.description];
+    [self presentAlertDialogWithTitle:title message:error.userInfo.allValues.description completionBlock:nil];
+}
+
+- (void)presentAlertDialogWithTitle:(NSString *)title errorAsMessage:(NSError *)error completionBlock:(UIViewControllerAlertButtonBlock)completionBlock {
+    [self presentAlertDialogWithTitle:title message:error.userInfo.allValues.description completionBlock:completionBlock];
+}
+
+- (void)presentAlertDialogWithTitle:(NSString *)title message:(NSString *)message {
+    [self presentAlertDialogWithTitle:title message:message completionBlock:nil];
+}
+
+- (void)presentAlertDialogWithTitle:(NSString *)title message:(NSString *)message completionBlock:(UIViewControllerAlertButtonBlock)completionBlock {
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    [ac addAction:[UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+            if (completionBlock) {
+                completionBlock();
+            }
+        }]];
+
+    [self presentViewController:ac animated:YES completion:nil];
 }
 
 @end

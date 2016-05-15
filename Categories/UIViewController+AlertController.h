@@ -24,6 +24,12 @@ typedef void (^UIViewControllerAlertButtonBlock)();
                        button2Block:(UIViewControllerAlertButtonBlock)button2Block;
 
 - (void)presentAlertDialogWithMessage:(NSString *)message;
+- (void)presentAlertDialogWithMessage:(NSString *)message completionBlock:(UIViewControllerAlertButtonBlock)completionBlock;
+
 - (void)presentAlertDialogWithTitle:(NSString *)title message:(NSString *)message;
+- (void)presentAlertDialogWithTitle:(NSString *)title message:(NSString *)message completionBlock:(UIViewControllerAlertButtonBlock)completionBlock;
+
+
 - (void)presentAlertDialogWithTitle:(NSString *)title errorAsMessage:(NSError *)error;
+- (void)presentAlertDialogWithTitle:(NSString *)title errorAsMessage:(NSError *)error completionBlock:(UIViewControllerAlertButtonBlock)completionBlock;
 @end
